@@ -6,24 +6,76 @@
 
 // SETCURRENTDIR("Media") // go to media files
 
+TYPE button_TYPE
+	typ
+	x
+	y
+	status
+ENDTYPE
+
+GLOBAL button[] AS button_TYPE
 
 main()
 
 FUNCTION main:
 
+	initial()
 	loader()
 
 	WHILE TRUE
 	
-	
+		drawBackground()
+		
+		drawLKW(100, 100, 1)
+		PRINT "test", 0, 0
 	
 		SHOWSCREEN
 	WEND
 	
 ENDFUNCTION
 
+FUNCTION initial:
+	
+	AUTOPAUSE FALSE
+	SYSTEMPOINTER TRUE
+	
+ENDFUNCTION
+
 FUNCTION loader:
 
+	LOADFONT "media/fonts/font_0.png", 0
+	LOADSPRITE "media/gfx/lkw.png", 100
+	
+	LOADSPRITE "media/gfx/cart_on.png", 200
+	LOADSPRITE "media/gfx/cart_off.png", 201
+	
 
+ENDFUNCTION
+
+FUNCTION drawLKW: x, y, direction
+
+	SELECT direction
+	CASE 0
+		DRAWSPRITE 100, x, y
+	CASE 1
+		ZOOMSPRITE 100, x, y, -1, 1
+	ENDSELECT
+
+ENDFUNCTION
+
+FUNCTION drawBackground:
+
+	STARTPOLY
+		POLYVECTOR 0, 0, 0, 0, RGB(32, 32, 32)
+		POLYVECTOR 0, 767, 0, 0, RGB(0, 0, 0)
+		POLYVECTOR 1023, 767, 0, 0, RGB(0, 0, 0)
+		POLYVECTOR 1023, 0, 0, 0, RGB(32, 32, 32)
+	ENDPOLY
+
+ENDFUNCTION
+
+FUNCTION drawGui:
+
+	
 
 ENDFUNCTION
